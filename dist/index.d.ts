@@ -1,1 +1,2 @@
-export declare function hello(name: string): string;
+export * from "./client";
+export * from "./server";

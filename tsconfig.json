@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "ESNext",
-    "declaration": true,
-    "declarationDir": "dist",
+    "target": "ES2020",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "outDir": "dist",
-    "strict": true,
-    "moduleResolution": "Node",
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "skipLibCheck": true,
-    "jsx": "react",
-    "lib": ["ESNext", "DOM"],
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowImportingTsExtensions": true
   },
   "include": ["src"]
 }

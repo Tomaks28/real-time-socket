@@ -2,7 +2,6 @@
   "name": "@tomaks28/real-time-socket",
   "version": "1.0.0",
   "description": "A generic TypeScript package for Expo and Next.js",
-  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -11,13 +10,15 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepare": "pnpm run build"
   },
   "keywords": [],
   "author": "Tomaks28",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/node": "^24.1.0",
     "rollup": "^3.29.5",
     "rollup-plugin-typescript2": "^0.31.2",
     "typescript": "^5.9.2"

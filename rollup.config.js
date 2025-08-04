@@ -2,19 +2,26 @@ import typescript from "rollup-plugin-typescript2";
 
 export default {
   input: "src/index.ts",
-  output: [
-    {
-      file: "dist/index.esm.js",
-      format: "esm",
-      sourcemap: true,
-    },
-    {
-      file: "dist/index.cjs.js",
-      format: "cjs",
-      sourcemap: true,
-      exports: "named",
-    },
+  output: {
+    file: "dist/index.esm.js",
+    format: "esm",
+    sourcemap: true,
+  },
+  plugins: [
+    typescript({
+      useTsconfigDeclarationDir: true,
+      tsconfigOverride: {
+        compilerOptions: {
+          module: "ESNext",
+          target: "ES2020",
+          moduleResolution: "NodeNext",
+          declaration: true,
+          declarationDir: "dist",
+          sourceMap: true,
+          esModuleInterop: true,
+        },
+      },
+    }),
   ],
-  plugins: [typescript({ useTsconfigDeclarationDir: true })],
-  external: ["react", "react-native"],
+  external: ["react", "react-native"], // garde externals si tu veux éviter de packager ces libs
 };

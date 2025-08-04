@@ -1,23 +1,17 @@
 import { Application } from "express";
 import { createServer, Server as HTTPServer } from "http";
-import { Server as SocketIOServer, Socket, ServerOptions } from "socket.io";
+import { Server, Socket } from "socket.io";
 
 export class SocketServer {
   private readonly app: Application;
   private readonly httpServer: HTTPServer;
-  private readonly io: SocketIOServer;
+  private readonly io: Server;
 
-  constructor(app: Application, options?: Partial<ServerOptions>) {
+  constructor(app: Application) {
     this.app = app;
     this.httpServer = createServer(this.app);
 
-    this.io = new SocketIOServer(this.httpServer, {
-      cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-      },
-      ...options,
-    });
+    this.io = new Server(this.httpServer);
 
     this.setupListeners();
   }
@@ -35,26 +29,5 @@ export class SocketServer {
         console.log(`❌ Déconnecté : ${socket.id}, raison : ${reason}`);
       });
     });
-  }
-
-  /**
-   * Démarre le serveur HTTP (Express + Socket.IO)
-   */
-  public listen(port: number, callback?: () => void): void {
-    this.httpServer.listen(port, callback);
-  }
-
-  /**
-   * Accès à l'instance de Socket.IO
-   */
-  public getIO(): SocketIOServer {
-    return this.io;
-  }
-
-  /**
-   * Accès au serveur HTTP (optionnel)
-   */
-  public getHttpServer(): HTTPServer {
-    return this.httpServer;
   }
 }
