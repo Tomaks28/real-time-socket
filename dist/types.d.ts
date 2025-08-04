@@ -3,6 +3,9 @@ export type ServerToClientEvents = {
     pong: (data: {
         time: number;
     }) => void;
+    reconnect_attempt: (attemptNumber: number) => void;
+    reconnect_error: (error: Error) => void;
+    reconnect_failed: () => void;
 };
 export type ClientToServerEvents = {
     ping: (data: {
